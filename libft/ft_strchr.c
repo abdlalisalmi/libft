@@ -1,35 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aes-salm <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/16 22:36:16 by aes-salm          #+#    #+#             */
-/*   Updated: 2019/10/16 22:36:26 by aes-salm         ###   ########.fr       */
+/*   Created: 2019/10/14 16:39:50 by aes-salm          #+#    #+#             */
+/*   Updated: 2019/10/14 16:39:55 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_strchr(const char *str, int c)
 {
-	char			*ptr;
+	char			*pstr;
 	unsigned int	i;
 
-	ptr = malloc(len);
+	pstr = (char*)str;
 	i = 0;
-	if (ptr != NULL)
+	while (i <= ft_strlen(pstr))
 	{
-		while (i < len)
-		{
-			ptr[i] = s[start];
-			start++;
-			i++;
-		}
-		ptr[i] = '\0';
-		return (ptr);
+		if (str[i] == c)
+			return ((char*)(str + i));
+		i++;
 	}
 	return (NULL);
 }

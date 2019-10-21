@@ -1,41 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aes-salm <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/16 19:18:07 by aes-salm          #+#    #+#             */
-/*   Updated: 2019/10/16 19:18:10 by aes-salm         ###   ########.fr       */
+/*   Created: 2019/10/20 18:08:27 by aes-salm          #+#    #+#             */
+/*   Updated: 2019/10/20 18:08:37 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
-void	ft_bzero(void *str, size_t n)
+void	ft_putnbr_fd(int n, int fd)
 {
-	char			*pstr;
-	unsigned int	i;
+	unsigned int nb;
 
-	pstr = str;
-	i = 0;
-	while (i < n)
+	nb = n;
+	if (n < 0)
 	{
-		pstr[i] = 0;
-		i++;
+		ft_putchar_fd('-', fd);
+		nb = n * (-1);
 	}
-}
-
-void	*ft_calloc(size_t nitems, size_t size)
-{
-	void *ptr;
-
-	ptr = malloc(nitems * size);
-	if (nitems > 0)
+	if (nb > 10)
 	{
-		ft_bzero(ptr, nitems * nitems);
-		return (ptr);
+		ft_putnbr_fd((nb / 10), fd);
+		ft_putnbr_fd((nb % 10), fd);
 	}
-	return (NULL);
+	else
+		ft_putchar_fd((nb + '0'), fd);
 }

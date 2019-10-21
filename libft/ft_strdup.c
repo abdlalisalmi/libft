@@ -1,25 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aes-salm <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/10 13:37:59 by aes-salm          #+#    #+#             */
-/*   Updated: 2019/10/10 13:55:48 by aes-salm         ###   ########.fr       */
+/*   Created: 2019/10/16 19:49:48 by aes-salm          #+#    #+#             */
+/*   Updated: 2019/10/16 19:49:51 by aes-salm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strlen(char *str)
+char	*ft_strdup(const char *str)
 {
-	char	*pstr;
-	int		i;
+	char			*ptr;
+	unsigned int	i;
 
-	pstr = str;
 	i = 0;
-	while (pstr[i] != '\0')
+	while (str[i])
 		i++;
-	return (i);
+	if (!(ptr = malloc(i + 1)))
+		return (NULL);
+	i = 0;
+	while (str[i])
+	{
+		ptr[i] = str[i];
+		i++;
+	}
+	ptr[i] = '\0';
+	return (ptr);
 }
