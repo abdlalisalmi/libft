@@ -10,22 +10,22 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
 	unsigned int	i;
-	unsigned int	len;
-	char			*str;
-	char			*ps;
+	char			*map_s;
 
-	ps = (char*)s;
-	len = ft_strlen(s);
-	if (!(str = malloc(len + 1)))
+	map_s = ft_strdup((char*)s);
+	i = 0;
+	if (!map_s || !s)
 		return (NULL);
-	while (i <= len)
+	while (map_s[i])
 	{
-		str[i] = f(i, ps[i]);
+		map_s[i] = f(i, map_s[i]);
 		i++;
 	}
-	str[i] = '\0';
-	return (str);
+	map_s[i] = '\0';
+	return (map_s);
 }
