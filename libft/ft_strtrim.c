@@ -12,27 +12,40 @@
 
 #include "libft.h"
 
-char	*ft_strtrim(char const *s1, char const *set)
+static int	ft_char_to_check(char *set, int c)
 {
-	char			*trim;
-	unsigned int	trim_len;
-	unsigned int	i;
-	unsigned int	j;
-
-	trim_len = ft_strlen(s1) - ft_strlen(set);
-	if (!(trim = (char*)malloc(trim_len)))
-		return (NULL);
-	i = 0;
-	j = 0;
-	while (s1[i] != '\0')
+	while (*set != '\0')
 	{
-		if (ft_strchr(set, s1[i]) == NULL)
-		{
-			trim[j] = s1[i];
-			j++;
-		}
-		i++;
+		if (*set == c)
+			return (1);
+		set++;
 	}
-	trim[j] = '\0';
-	return ((char*)trim);
+	return (0);
+}
+
+char		*ft_strtrim(char const *s1, char const *set)
+{
+	int		i;
+	int		st;
+	int		ed;
+	char	*new_str_alloced;
+
+	i = 0;
+	st = 0;
+	ed = ft_strlen((char *)s1) - 1;
+	while (ft_char_to_check((char *)set, s1[st]) != 0 && s1[i] != '\0')
+		st++;
+	while (ft_char_to_check((char *)set, s1[ed]) != 0 && ed > 0)
+		ed--;
+	if (ed == 0)
+		new_str_alloced = malloc(1);
+	else
+	{
+		if (!(new_str_alloced = malloc(ed - st + 2)))
+			return (NULL);
+	}
+	while (ed >= st)
+		new_str_alloced[i++] = s1[st++];
+	new_str_alloced[i] = '\0';
+	return (new_str_alloced);
 }
