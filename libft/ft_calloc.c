@@ -16,11 +16,8 @@ void	*ft_calloc(size_t nitems, size_t size)
 {
 	void *ptr;
 
-	ptr = malloc((nitems * size) + 1);
-	if (nitems > 0)
-	{
-		ft_bzero(ptr, nitems * nitems);
-		return (ptr);
-	}
-	return (NULL);
+	if (!(ptr = malloc(nitems * size)))
+		return (NULL);
+	ft_bzero(ptr, nitems * size);
+	return (ptr);
 }

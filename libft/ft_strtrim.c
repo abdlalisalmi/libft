@@ -30,6 +30,8 @@ char		*ft_strtrim(char const *s1, char const *set)
 	int		ed;
 	char	*new_str_alloced;
 
+	if (!s1 || !set)
+		return (NULL);
 	i = 0;
 	st = 0;
 	ed = ft_strlen((char *)s1) - 1;

@@ -1,8 +1,7 @@
 NAME= libft.a
 CFLAGS= -Wall -Werror -Wextra
 CC= gcc
-SRC= 	libft.h \
-		ft_memset.c\
+SRC= 	ft_memset.c\
 		ft_bzero.c\
 		ft_memcpy.c\
 		ft_memccpy.c\
@@ -29,27 +28,25 @@ SRC= 	libft.h \
 		ft_strjoin.c \
 		ft_strtrim.c\
 		ft_substr.c\
-		ft_strmapi.c\
 		ft_itoa.c\
 		ft_putchar_fd.c\
 		ft_putstr_fd.c\
 		ft_putendl_fd.c\
 		ft_putnbr_fd.c\
-
-OBJS= *.o
+		ft_strmapi.c\
+		ft_split.c\
 
 all: $(NAME)
 
-$(NAME) : $(OBJS)
-	 @ar rc $(NAME) $(OBJS)
+$(NAME) : $(SRC)
+	@$(CC) $(CFLAGS) -c $(SRC)
+	@ar rc $(NAME) *.o
 
-$(OBJS) : $(SRC)
-	 $(CC) $(CFLAGS) -c $(SRC)
 
 clean:
-	rm -rf $(OBJS)
+	@rm -rf *.o
 
-fclean: 
-	rm -rf *.a 
+fclean: clean
+	@rm -rf $(NAME)
 
 re: fclean all
